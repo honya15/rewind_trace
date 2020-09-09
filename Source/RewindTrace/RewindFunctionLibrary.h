@@ -14,6 +14,9 @@ class REWINDTRACE_API URewindFunctionLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 public:
-	UFUNCTION( BlueprintCallable )
-		bool ServerRewindLineTrace( uint32 TimeStamp, const FVector& TraceStart, const FVector& TraceEnd, TArray< FHitResult >& HitResults );
+	UFUNCTION( BlueprintCallable, meta = (bIgnoreSelf = "true", WorldContext = "WorldContextObject") )
+		static int32 StaticGetTimeStamp( UObject* WorldContextObject );
+
+	UFUNCTION( BlueprintCallable, meta = (bIgnoreSelf = "true", WorldContext = "WorldContextObject") )
+		static bool ServerRewindLineTrace( UObject* WorldContextObject, int32 TimeStamp, const FVector& TraceStart, const FVector& TraceEnd, TArray< FHitResult >& HitResults );
 };
